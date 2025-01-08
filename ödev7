@@ -1,14 +1,21 @@
-SELECT AVG(rental_rate) AS average_rental_rate
-FROM film;
-------------------------------------------------
-SELECT COUNT(*) AS count_of_c_titles
+SELECT rating, COUNT(*) AS film_count
 FROM film
-WHERE title LIKE 'C%';
-------------------------------------------------
-SELECT MAX(length) AS longest_length
+GROUP BY rating
+ORDER BY rating;
+----------------------------------------------------
+SELECT replacement_cost, COUNT(*) AS film_count
 FROM film
-WHERE rental_rate = 0.99;
-------------------------------------------------
-SELECT COUNT(DISTINCT replacement_cost) AS distinct_replacement_costs
-FROM film
-WHERE length > 150;
+GROUP BY replacement_cost
+HAVING COUNT(*) > 50
+ORDER BY film_count DESC;
+----------------------------------------------------
+SELECT store_id, COUNT(*) AS customer_count
+FROM customer
+GROUP BY store_id
+ORDER BY store_id;
+----------------------------------------------------
+SELECT country_id, COUNT(*) AS city_count
+FROM city
+GROUP BY country_id
+ORDER BY city_count DESC
+LIMIT 1;
